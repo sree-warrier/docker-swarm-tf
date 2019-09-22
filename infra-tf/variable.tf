@@ -1,9 +1,9 @@
 variable "access_key" {
-	default = "AKIAUWQ5LENH3KIOLJ6G"
+	default = "YOUR_ACCESS_KEY"
 }
 variable "secret_key" {
-	default = "aRF0hAC9VCPmgQZHcohlghLB1Psk4hB78Jy+9rJs"
+	default = "YOUR_SECRET_KEY"
 }
 variable "region" {
-    default = "ap-southeast-1"
+    default = "your-region"
 }
