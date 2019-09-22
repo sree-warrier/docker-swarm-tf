@@ -16,7 +16,7 @@ Includes
 Prerequisites
 -------------
 
-* Terraform should be installed. Get it from `https://www.terraform.io/downloads.html` to grab the latest version.
+* Terraform should be installed. Get it from https://www.terraform.io/downloads.html to grab the latest version.
 * An AWS account http://aws.amazon.com/
 
 Usage
@@ -38,10 +38,12 @@ The following steps will walk you through the process:
 
 3. infra-tf directory conatins the terraform file for infra setup, use the following steps::
 
-      ```cd infra-tf
+      ```
+      cd infra-tf
       terraform init
       terraform plan
-      terraform apply```
+      terraform apply
+      ```
 
 4. Once the infra is up, follow these steps for a slave to join the swarm.
 
