@@ -107,7 +107,7 @@ resource "aws_instance" "master" {
   count         = 1
   ami           = "ami-04613ff1fdcd2eab1"
   instance_type = "t2.micro"
-  key_name = "sreekanth-key"
+  key_name = "key-pair.pem"
   subnet_id = "${element(module.vpc.private_subnets, 0)}"
   vpc_security_group_ids = ["${aws_security_group.swarm-sg.id}"]
   user_data = "${file("swarm-master.sh")}"
@@ -120,7 +120,7 @@ resource "aws_instance" "slave" {
   count         = 2
   ami           = "ami-04613ff1fdcd2eab1"
   instance_type = "t2.micro"
-  key_name = "sreekanth-key"
+  key_name = "key-pair.pem"
   subnet_id = "${element(module.vpc.private_subnets, 0)}"
   vpc_security_group_ids = ["${aws_security_group.swarm-sg.id}"]
   user_data = "${file("swarm-slave.sh")}"
@@ -133,17 +133,17 @@ resource "aws_instance" "jump" {
   count                  = 1
   ami                    = "ami-04613ff1fdcd2eab1"
   instance_type          = "t2.micro"
-  key_name               = "sreekanth-key"
+  key_name               = "key-pair.pem"
   associate_public_ip_address	= true
   vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
   subnet_id              = "${element(module.vpc.public_subnets, 0)}"
   provisioner "file" {
-    source = "sreekanth-key.pem"
-    destination = "/home/ubuntu/sreekanth-key.pem"
+    source = "key-pair.pem"
+    destination = "/home/ubuntu/key-pair.pem"
     connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = "${file("sreekanth-key.pem")}"
+    private_key = "${file("key-pair.pem")}"
   }
   }
   provisioner "file" {
@@ -152,7 +152,7 @@ resource "aws_instance" "jump" {
     connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = "${file("sreekanth-key.pem")}"
+    private_key = "${file("key-pair.pem")}"
   }
   }
   provisioner "file" {
@@ -161,7 +161,7 @@ resource "aws_instance" "jump" {
     connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = "${file("sreekanth-key.pem")}"
+    private_key = "${file("key-pair.pem")}"
   }
   }
   tags = {
@@ -173,7 +173,7 @@ resource "aws_instance" "jenkins" {
   count         = 1
   ami           = "ami-0b002ca8dcaeca431"
   instance_type = "t2.micro"
-  key_name = "sreekanth-key"
+  key_name = "key-pair.pem"
   subnet_id = "${element(module.vpc.public_subnets, 0)}"
   vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}","${aws_security_group.jenkins-sg.id}"]
   tags = {
@@ -254,7 +254,7 @@ resource "aws_security_group" "jenkins-sg" {
     protocol    = "tcp"
     # Please restrict your ingress to only necessary IPs and ports.
     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
-    cidr_blocks = ["182.74.184.211/32","182.75.87.26/32"]
+    cidr_blocks = ["Your IP"]
   }
     egress {
     from_port       = 0
@@ -275,7 +275,7 @@ resource "aws_security_group" "allow_ssh" {
     protocol    = "tcp"
     # Please restrict your ingress to only necessary IPs and ports.
     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
-    cidr_blocks = ["182.74.184.211/32","182.75.87.26/32"]
+    cidr_blocks = ["Your IP"]
   }
     egress {
     from_port       = 0
@@ -296,7 +296,7 @@ resource "aws_security_group" "https_alb" {
     protocol    = "tcp"
     # Please restrict your ingress to only necessary IPs and ports.
     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
-    cidr_blocks = ["182.74.184.211/32","182.75.87.26/32"]
+    cidr_blocks = ["Your IP"]
   }
     egress {
     from_port       = 0

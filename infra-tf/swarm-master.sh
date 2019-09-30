@@ -9,3 +9,4 @@ sudo apt-get install docker-ce -y
 sudo docker swarm init
 sudo docker swarm join-token --quiet worker > /home/ubuntu/token
 sudo chown ubuntu.ubuntu /home/ubuntu/token
+sudo usermod -aG docker ubuntu
