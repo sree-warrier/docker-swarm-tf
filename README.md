@@ -53,12 +53,13 @@ The following steps will walk you through the process:
 4. Once the infra is up, follow these steps for a slave to join the swarm.
 
     - Login to the Jump instance using the key
-    - Get the swarm-master ip and swarm-slave ip from console
     - Execute this command in Jump box
 
-      ```bash connect.sh <swarm-master-ip> <swarm-slave-ip>```
+      ```bash connect.sh <swarm-master-ip/hostname> <swarm-slave-ip/hostname>```
 
-5. To increase the swarn-slave
+      eg : ```bash connect.sh master.swarm-tf.com slave0.swarm-tf.com```
+
+5. To increase the swarm-slave
 
     - Update the count value under the slave resource in main.tf file
     - Then follow the Step 4
