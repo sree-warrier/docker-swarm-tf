@@ -10,6 +10,8 @@ Includes
 * EC2 instances
 * ALB
 * Security groups
+* IAM SSL
+* route53
 * docker, docker swarm
 * Jenkins
 * CI/CD
@@ -37,6 +39,7 @@ The following steps will walk you through the process:
     - Create a keypair or use an existing one
     - Update key pair under respective file main.tf, swarm-join.sh, connect.sh
     - Configure aws credentials, update the access and secret keys in variable.tf
+    - Updated your local public IP in the security group section
 
 3. infra-tf directory conatins the terraform file for infra setup, use the following steps::
 
