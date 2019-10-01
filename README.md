@@ -37,7 +37,7 @@ The following steps will walk you through the process:
 2. Following should be created before terraform file execution::
 
     - Create a keypair or use an existing one
-    - Update key pair under respective file main.tf, swarm-join.sh, connect.sh by changing the value "key-pair.pem".
+    - Update key pair under respective file main.tf, swarm-join.sh, swarm-slave.sh, connect.sh by changing the value "key-pair.pem".
     - Make sure that the key file should be copied under the infra-tf directory, were the terraform execution is processed
     - Configure aws credentials, update the access and secret keys in variable.tf
     - Updated your local public IP under the security group section in main.tf file 
